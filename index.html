@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudarsan Perumal V | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#0a192f">
+    <style>
+        :root {
+            --primary: #64ffda;
+            --bg-dark: #0a192f;
+            --text-light: #ccd6f6;
+            --text-dark: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 1px;
+            flex: 1;
+            background: var(--text-dark);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Experience */
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .experience-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .header-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .header-content p {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .experience-card {
+                padding: 20px;
+            }
+
+            .skill-card, .project-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .header-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .skill-card:hover,
+            .project-card:hover {
+                transform: none;
+            }
+
+            .nav-links a:hover::after {
+                width: 0;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header {
+                height: auto;
+                min-height: 100vh;
+                padding: 100px 0;
+            }
+
+            .nav-links {
+                padding: 20px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .mobile-nav-toggle {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            header {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(
+                to bottom right,
+                var(--bg-dark),
+                #0d2444,
+                #1a365d
+            );
+            z-index: 1;
+        }
+
+        /* Adjust other container elements to appear above particles */
+        nav, header, main, footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Optional: Add glass effect to cards */
+        .skill-card, .project-card, .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Optional: Add subtle glow effect to primary elements */
+        .header-content h1 {
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+
+        .section-title {
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.2);
+        }
+
+        /* Floating Orb Styles */
+        .floating-orb {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            z-index: 100;
+            transition: all 0.5s ease;
+        }
+
+        .orb {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .core {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--primary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .rings span {
+            position: absolute;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: expand 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .rings span:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            animation-delay: 0.2s;
+        }
+
+        .rings span:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            animation-delay: 0.4s;
+        }
+
+        .rings span:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            animation-delay: 0.6s;
+        }
+
+        .particles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: particle 2s linear infinite;
+        }
+
+        .particles span:nth-child(1) { transform: rotate(0deg) translateX(40px); }
+        .particles span:nth-child(2) { transform: rotate(72deg) translateX(40px); }
+        .particles span:nth-child(3) { transform: rotate(144deg) translateX(40px); }
+        .particles span:nth-child(4) { transform: rotate(216deg) translateX(40px); }
+        .particles span:nth-child(5) { transform: rotate(288deg) translateX(40px); }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes expand {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particle {
+            0% {
+                transform: rotate(0) translateX(40px) rotate(0);
+            }
+            100% {
+                transform: rotate(360deg) translateX(40px) rotate(-360deg);
+            }
+        }
+
+        /* Section-specific animations */
+        .orb[data-section="about"] {
+            --primary: #64ffda;
+        }
+
+        .orb[data-section="skills"] {
+            --primary: #ff64da;
+        }
+
+        .orb[data-section="projects"] {
+            --primary: #64daff;
+        }
+
+        .orb[data-section="contact"] {
+            --primary: #deff64;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .floating-orb {
+                bottom: 20px;
+                right: 20px;
+                transform: scale(0.8);
+            }
+        }
+
+        /* Hide orb when printing */
+        @media print {
+            .floating-orb {
+                display: none;
+            }
+        }
+
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(
+                45deg,
+                var(--primary),
+                rgba(100, 255, 218, 0.5)
+            );
+            border-radius: 10px;
+            border: 2px solid var(--bg-dark);
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(
+                45deg,
+                var(--primary),
+                rgba(100, 255, 218, 0.8)
+            );
+        }
+
+        /* Firefox Scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg-dark);
+        }
+
+        /* For better mobile experience */
+        @media (max-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                border-width: 1px;
+            }
+        }
+
+        /* Optional: Add smooth scroll behavior to the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">SP</div>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <p>Hi, my name is</p>
+                <h1>Sudarsan Perumal V</h1>
+                <p>I build things for the web.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="floating-orb">
+        <div class="orb">
+            <div class="core"></div>
+            <div class="rings">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="particles">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <p>
+                I am a dedicated Front-End Developer with 1.5 years of experience in creating responsive web applications. 
+                I specialize in React.js, JavaScript, and state management libraries like Redux. 
+                I enjoy transforming complex ideas into user-friendly digital solutions.
+            </p>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-react"></i>
+                    <h3>React.js</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Redux</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Webpack</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript (ES6+)</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML & CSS</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git Version Control</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Exam Scheduler</h3>
+                        <p>Built using React.js</p>
+                        <div class="project-links">
+                            <a href="https://github.com/Sudarsan002/examscheduler.git" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Book Blog</h3>
+                        <p>Built using Next.js</p>
+                        <div class="project-links">
+                            <a href="https://book-blog-sigma.vercel.app/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-card">
+                <h3>Front-End Developer</h3>
+                <p>Intain Technologies Pvt Ltd</p>
+                <p>Aug 2022 - Present</p>
+            </div>
+            <div class="experience-card">
+                <h3>Front-End Developer Intern</h3>
+                <p>Incresco Technologies, Bangalore</p>
+                <p>Aug 2022 - Sept 2022</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:sudarsan8786@gmail.com">sudarsan8786@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>9047745544</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Salem, India</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sudarsan Perumal V</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Mobile Navigation
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        mobileNavToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileNavToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileNavToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileNavToggle.querySelector('i').classList.add('fa-bars');
+                mobileNavToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileNavToggle.querySelector('i').classList.add('fa-bars');
+                mobileNavToggle.querySelector('i').classList.remove('fa-times');
+            }
+        });
+
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Particle.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#64ffda'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    animation: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#64ffda',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 0.5
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Optional: Add smooth color transition to particles
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            const particles = document.querySelectorAll('#particles-js canvas');
+            particles.forEach(particle => {
+                particle.style.filter = `hue-rotate(${hue}deg)`;
+            });
+        }, 100);
+
+        // Optimize particle animation on mobile
+        function checkMobile() {
+            if (window.innerWidth < 768) {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: {
+                            value: 15,
+                            density: {
+                                enable: true,
+                                value_area: 600
+                            }
+                        },
+                        color: {
+                            value: '#64ffda'
+                        },
+                        shape: {
+                            type: 'circle'
+                        },
+                        opacity: {
+                            value: 0.3,
+                            random: false,
+                            animation: {
+                                enable: false
+                            }
+                        },
+                        size: {
+                            value: 2,
+                            random: true,
+                            animation: {
+                                enable: false
+                            }
+                        },
+                        line_linked: {
+                            enable: false
+                        },
+                        move: {
+                            enable: true,
+                            speed: 0.3,
+                            direction: 'top',
+                            random: false,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: {
+                                enable: false
+                            },
+                            onclick: {
+                                enable: false
+                            },
+                            resize: true
+                        }
+                    },
+                    retina_detect: false
+                });
+            }
+        }
+
+        // Call the function on load and resize
+        window.addEventListener('load', checkMobile);
+        window.addEventListener('resize', checkMobile);
+
+        // Character Animation Control
+        const orb = document.querySelector('.floating-orb');
+        const sections = document.querySelectorAll('section');
+        let lastScrollTop = 0;
+
+        function updateOrbPosition() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Calculate vertical position
+            let newY = (scrollTop / (documentHeight - windowHeight)) * (windowHeight - 200);
+            
+            // Add horizontal movement based on scroll direction
+            if (scrollTop > lastScrollTop) {
+                orb.style.right = '50px';
+            } else {
+                orb.style.right = '80px';
+            }
+            
+            // Update orb position
+            orb.style.bottom = `${50 + newY}px`;
+            
+            // Update last scroll position
+            lastScrollTop = scrollTop;
+
+            // Determine which section is in view
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < windowHeight/2 && rect.bottom > windowHeight/2) {
+                    orb.querySelector('.orb').dataset.section = section.id;
+                }
+            });
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', updateOrbPosition);
+        
+        // Initial position
+        updateOrbPosition();
+
+        // Optional: Add interaction on hover
+        orb.addEventListener('mouseover', () => {
+            orb.style.transform = 'scale(1.2)';
+        });
+
+        orb.addEventListener('mouseout', () => {
+            orb.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
